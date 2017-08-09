@@ -4,6 +4,7 @@ import numpy as np
 import pdb
 import os
 import copy
+import socket
 
 def open_files_with_shell_script(files_list, program = 'preview'):
 
@@ -65,13 +66,21 @@ def create_list_of_files(start_experiment_name, start_plot_name, start_number, e
 
 if __name__=="__main__":
     
+    hostname=socket.gethostname()
+    
+    if 'emps-gv' in hostname:
+        base_folder_use = '/Users/sit204/mounts/gv3/sit204/plots'
+    elif hostname=='sitMacBookPro.local':
+        base_folder_use = '/Volumes/gv3/sit204/plots/'        
+    
+    
     exp_numbers_in=[19, 20, 21, 22, 25, 26, 27, 28]
                          
     file_list_created = create_list_of_files(start_experiment_name = 'annual_mean_ice_post_princeton_qflux_anoms_'+str(exp_numbers_in[0]),                    start_plot_name='ucomp_annual_mean_ice_post_princeton_qflux_anoms_'+str(exp_numbers_in[0])+'_timeseasons_250hPa',
                          start_number=exp_numbers_in[0],
                          exp_numbers=exp_numbers_in,
                          time_folder_name = '529_768',
-                         base_folder = '/Users/sit204/mounts/gv3/sit204/plots',
+                         base_folder = base_folder_use ,
                          control_exp_name = 'annual_mean_ice_post_princeton_qflux_control_1',
                          control_time_folder_name = '481_720')
 
@@ -82,7 +91,7 @@ if __name__=="__main__":
                          start_number=exp_numbers_in[0],
                          exp_numbers=exp_numbers_in,
                          time_folder_name = '529_768',
-                         base_folder = '/Users/sit204/mounts/gv3/sit204/plots',
+                         base_folder = base_folder_use,
                          control_exp_name = 'simple_continents_post_princeton_qflux_control_1',
                          control_time_folder_name = '481_720')
 
