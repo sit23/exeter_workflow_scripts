@@ -68,7 +68,7 @@ if __name__=="__main__":
     
     hostname=socket.gethostname()
     
-    if 'emps-gv' in hostname:
+    if 'emps-thomson' in hostname:
         base_folder_use = '/Users/sit204/mounts/gv3/sit204/plots'
     elif hostname=='sitMacBookPro.local':
         base_folder_use = '/Volumes/gv3/sit204/plots/'        
