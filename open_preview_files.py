@@ -73,26 +73,58 @@ if __name__=="__main__":
     elif hostname=='sitMacBookPro.local':
         base_folder_use = '/Volumes/gv3/sit204/plots/'        
     
+#     exp_numbers_in=[21,22,25]    
+#     exp_numbers_in=[13, 14, 15, 16, 22, 25, 26, 27, 28]
+#     exp_numbers_in=[19, 20, 21, 22, 23, 24, 25, 26, 27, 28]
+#     exp_numbers_in=[13, 14, 15, 16, 17, 18]
+#     exp_numbers_in = [17, 18, 23, 24]
+#     exp_numbers_in=[1,2,3,7,8,9,29,30,31]
+#     exp_numbers_in=[1,2,3,7,8,9]    
+#     exp_numbers_in=[4,5,6, 10, 11, 12]    
+    exp_numbers_in = range(19,23)
     
-    exp_numbers_in=[19, 20, 21, 22, 25, 26, 27, 28]
+    var_to_plot_1='heat_budget_comparison_jja'
+    time_str_1=''
+    level_to_plot_1=''
+    exp_name_1_anom = 'annual_mean_ice_post_princeton_qflux_anoms'
+    exp_name_1_control = 'annual_mean_ice_post_princeton_qflux_control_1'
+
+#     var_to_plot_2='heat_budget_comparison_jja'
+#     time_str_2=''
+#     level_to_plot_2=''
+#     exp_name_2_anom = 'annual_mean_ice_post_princeton_qflux_anoms'
+#     exp_name_2_control = 'annual_mean_ice_post_princeton_qflux_control_1'
+    
+#     var_to_plot='ucomp'
+#     time_str='_timeseasons_'
+#     level_to_plot='250hPa'
+
+    try:
+        var_to_plot_2
+    except NameError:
+        var_to_plot_2=var_to_plot_1
+        time_str_2=time_str_1
+        level_to_plot_2=level_to_plot_1 
+        exp_name_2_anom = 'simple_continents_post_princeton_qflux_anoms'
+        exp_name_2_control = 'simple_continents_post_princeton_qflux_control_1'          
                          
-    file_list_created = create_list_of_files(start_experiment_name = 'annual_mean_ice_post_princeton_qflux_anoms_'+str(exp_numbers_in[0]),                    start_plot_name='ucomp_annual_mean_ice_post_princeton_qflux_anoms_'+str(exp_numbers_in[0])+'_timeseasons_250hPa',
+    file_list_created = create_list_of_files(start_experiment_name = exp_name_1_anom+'_'+str(exp_numbers_in[0]),                    start_plot_name=var_to_plot_1+'_'+exp_name_1_anom+'_'+str(exp_numbers_in[0])+time_str_1+level_to_plot_1,
                          start_number=exp_numbers_in[0],
                          exp_numbers=exp_numbers_in,
                          time_folder_name = '529_768',
                          base_folder = base_folder_use ,
-                         control_exp_name = 'annual_mean_ice_post_princeton_qflux_control_1',
+                         control_exp_name = exp_name_1_control,
                          control_time_folder_name = '481_720')
 
     open_files_with_shell_script(file_list_created, program = 'acrobat')
     
-    file_list_created = create_list_of_files(start_experiment_name = 'simple_continents_post_princeton_qflux_anoms_'+str(exp_numbers_in[0]),
-                         start_plot_name='ucomp_simple_continents_post_princeton_qflux_anoms_'+str(exp_numbers_in[0])+'_timeseasons_250hPa',
+    file_list_created = create_list_of_files(start_experiment_name = exp_name_2_anom+'_'+str(exp_numbers_in[0]),
+                         start_plot_name=var_to_plot_2+'_'+exp_name_2_anom+'_'+str(exp_numbers_in[0])+time_str_2+level_to_plot_2,
                          start_number=exp_numbers_in[0],
                          exp_numbers=exp_numbers_in,
                          time_folder_name = '529_768',
                          base_folder = base_folder_use,
-                         control_exp_name = 'simple_continents_post_princeton_qflux_control_1',
+                         control_exp_name = exp_name_2_control ,
                          control_time_folder_name = '481_720')
 
     open_files_with_shell_script(file_list_created, program = 'skim')
