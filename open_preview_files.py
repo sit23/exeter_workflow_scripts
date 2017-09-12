@@ -54,12 +54,12 @@ def create_list_of_files(start_experiment_name, start_plot_name, start_number, e
         file_list_exist[file_list.index(file_list_entry)] = os.path.isfile(file_list_entry)
         
     if np.all(file_list_exist):
-        print 'all files exist'
+        print('all files exist')
     elif np.any(file_list_exist):
-        print 'some exist'
+        print('some exist')
     else:
-        print file_list
-        print 'none exist'
+        print(file_list)
+        print('none exist')
 
     return file_list
 
@@ -81,7 +81,7 @@ if __name__=="__main__":
 #     exp_numbers_in=[1,2,3,7,8,9,29,30,31]
 #     exp_numbers_in=[1,2,3,7,8,9]    
 #     exp_numbers_in=[4,5,6, 10, 11, 12]    
-    exp_numbers_in = range(19,23)
+    exp_numbers_in = list(range(19,23))
     
     var_to_plot_1='heat_budget_comparison_jja'
     time_str_1=''
