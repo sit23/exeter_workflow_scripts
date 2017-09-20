@@ -1,5 +1,6 @@
 import os
 import pdb
+import shutil
 
 def get_new_plot_name(name_in):
 
@@ -35,7 +36,7 @@ def get_new_plot_name(name_in):
 if __name__=="__main__":
 
     base_dir = '/Users/sit204/mounts/gv3/sit204/collab/laura_wilcox/second_set_of_isca_results_20_09_17/difference_plots/'
-    
+    time_folder_to_keep = '289_528_minus_289_528'
     folders = os.listdir(base_dir)
     
     for num_exp in range(1,len(folders)+1):
@@ -49,14 +50,18 @@ if __name__=="__main__":
         contents_of_folder = os.listdir(base_dir+new_name)
         time_folders = [name for name in contents_of_folder if os.path.isdir(os.path.join(base_dir, new_name, name))]
         for time_folder in time_folders:
-            plots = os.listdir(os.path.join(base_dir, new_name, time_folder))
+            if time_folder==time_folder_to_keep:
+                plots = os.listdir(os.path.join(base_dir, new_name, time_folder))
             
-            for plot in plots:
-                new_plot_name = get_new_plot_name(plot)
-                new_plot_path = os.path.join(base_dir, new_name, new_plot_name)
-                if not os.path.isfile(new_plot_path):
-                    os.rename(os.path.join(base_dir, new_name, time_folder, plot), new_plot_path)
+                for plot in plots:
+                    new_plot_name = get_new_plot_name(plot)
+                    new_plot_path = os.path.join(base_dir, new_name, new_plot_name)
+                    if not os.path.isfile(new_plot_path):
+                        os.rename(os.path.join(base_dir, new_name, time_folder, plot), new_plot_path)
             
-            os.rmdir(os.path.join(base_dir, new_name, time_folder))
+                os.rmdir(os.path.join(base_dir, new_name, time_folder))
+            else:
+                shutil.rmtree(os.path.join(base_dir, new_name, time_folder))                
+            
             
         
